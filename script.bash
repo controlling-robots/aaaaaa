@@ -16,7 +16,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y x11vnc > /dev/null
 
 touch /etc/systemd/system/x11vnc.service
 
-cat >/etc/systemd/system/x11vnc.service <<EOL
+cat >/etc/systemd/system/x11vnc.service <<EOT
 # Description: Custom Service Unit file
 # File: /etc/systemd/system/x11vnc.service
 [Unit]
@@ -32,7 +32,7 @@ RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
-EOL
+EOT
 
 systemctl enable x11vnc.service
 
