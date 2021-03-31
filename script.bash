@@ -2,8 +2,8 @@
 
 apt install -y lightdm expect > /dev/null
 
-dpkg --configure -a
-dpkg-reconfigure --frontend noninteractive gdm3
+DEBIAN_FRONTEND=noninteractive dpkg --configure -a
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure gdm3
 
 # expect spawn dpkg-reconfigure gdm3 -freadline
 # expect "Default display manager:"
