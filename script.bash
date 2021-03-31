@@ -3,15 +3,16 @@
 apt install -y lightdm expect
 
 dpkg --configure -a
+dpkg-reconfigure --frontend noninteractive gdm3
 
-expect spawn dpkg-reconfigure gdm3 -freadline
-expect "Default display manager:"
-send "2\r"
-expect eof
+# expect spawn dpkg-reconfigure gdm3 -freadline
+# expect "Default display manager:"
+# send "2\r"
+# expect eof
 
 #dpkg-reconfigure gdm3
 
-apt install -y x11vnc
+DEBIAN_FRONTEND=noninteractive apt install -y x11vnc
 
 touch /etc/systemd/system/x11vnc.service
 
