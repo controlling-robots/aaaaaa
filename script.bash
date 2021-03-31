@@ -5,7 +5,7 @@ apt install -y lightdm expect > /dev/null
 dpkg --configure -a
 
 echo "...DPKG-RECONF SERVICE"
-expect reconf.bash
+expect /root/reconf.bash
 
 #dpkg-reconfigure gdm3
 
@@ -32,7 +32,8 @@ WantedBy=multi-user.target
 EOT
 
 echo "...START SERVICE"
-systemctl enable x11vnc.service
+# systemctl enable x11vnc.service
+systemctl disable x11vnc.service
 
 echo "...REBOOT"
 sleep 1
