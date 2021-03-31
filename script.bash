@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install -y lightdm expect
+apt install -y lightdm expect > /dev/null
 
 dpkg --configure -a
 dpkg-reconfigure --frontend noninteractive gdm3
@@ -12,7 +12,7 @@ dpkg-reconfigure --frontend noninteractive gdm3
 
 #dpkg-reconfigure gdm3
 
-DEBIAN_FRONTEND=noninteractive apt install -y x11vnc
+DEBIAN_FRONTEND=noninteractive apt install -y x11vnc > /dev/null
 
 touch /etc/systemd/system/x11vnc.service
 
