@@ -2,20 +2,17 @@
 
 apt install -y lightdm expect > /dev/null
 
-DEBIAN_FRONTEND=noninteractive dpkg --configure -a
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure gdm3
+dpkg --configure -a
 
-# expect spawn dpkg-reconfigure gdm3 -freadline
-# expect "Default display manager:"
-# send "2\r"
-# expect eof
+echo "...DPKG-RECONF SERVICE"
+expect reconf.bash
 
 #dpkg-reconfigure gdm3
 
-DEBIAN_FRONTEND=noninteractive apt install -y x11vnc > /dev/null
+apt install -y x11vnc > /dev/null
 
+echo "...INSTALL SERVICE"
 touch /etc/systemd/system/x11vnc.service
-
 cat >/etc/systemd/system/x11vnc.service <<EOT
 # Description: Custom Service Unit file
 # File: /etc/systemd/system/x11vnc.service
@@ -34,6 +31,10 @@ RestartSec=2
 WantedBy=multi-user.target
 EOT
 
+echo "...START SERVICE"
 systemctl enable x11vnc.service
+
+echo "...REBOOT"
+sleep 1
 
 reboot
